@@ -14,7 +14,7 @@ def change_dir(new_path):
     try:
         os.chdir(new_path)
         print('Dir was changed. Current dir is {}'.format(new_path))
-    except: #FileNotExistsError
+    except: #FileExistsError:
         print('There is no dir like : {}'.format(new_path))
 
 def give_help():
@@ -24,15 +24,20 @@ def give_help():
     print('ls -- to get list of contents: files and subdirectories')
     print('rd <dir_name> -- to remove directory from current directory')
     print('crd <dir_name> -- to create new directory in current directory')
+    print('current_dir -- to get current location')
     print('q -- to exit')
     print()
+
+def print_cur_dir():
+    print(os.getcwd())
 
 do = {
     'cd': change_dir,
     'ls': e_lib.show_cur_all,
     'rd': e_lib.drop_dir,
     'crd': e_lib.create_dir,
-    'help': give_help
+    'help': give_help,
+    'current_dir': print_cur_dir
 }
 
 give_help()
